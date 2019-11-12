@@ -11,21 +11,22 @@ export class Repository {
             if(Repository.connection) {
                 return Repository.connection;
             } else {
-                const connection = await createConnection({
-                    type: "oracle",
-                    host: "localhost",
-                    port: 1521,
-                    username: "SYSTEM",
-                    password: "Welcome_1",
-                    sid: 'ORCL18',
-                    database: "COMPANY",
-                    entities: [
+
+                let options:any = {
+                    type: process.env.type,
+                    host: process.env.host,
+                    port: parseInt(process.env.port),
+                    username: process.env.username,
+                    password: process.env.password,
+                    sid: process.env.sid,
+                    database : process.env.database,
+                    entities : [
                         Employee
                     ],
-                    synchronize: false,
-                    logging: true,
-                    
-                });
+                    synchronize : false,
+                    logging : true
+                }
+                const connection = await createConnection(options);
                 Repository.connection = connection;
             }
         }

@@ -41,8 +41,16 @@ gulp.task('start', () => {
 		ext: 'js',
 		env: {
 			'NODE_ENV': 'development',
+			'type': "oracle",
+			'host': "localhost",
+			'port': '1521',
+			'username': "SYSTEM",
+			'password': "Welcome_1",
+			'sid': 'ORCL18',
+			'database': "COMPANY",
 			"JWT_SECRET" : 'my_secret_key'
 		}
+
 	});
 
 	stream.on('crash', function(){
@@ -59,11 +67,6 @@ gulp.task('build', gulp.series('compile', 'compress', 'clean:temporal'), () => {
 gulp.task('swaggerFile', () => {
 	return gulp.src(config.swagger.src).pipe(gulp.dest(config.swagger.dest));
 });
-
-// Set up a watcher to watch over changes
-// gulp.task('watch', () => {
-//     gulp.watch('server/**/*.ts', gulp.series('scripts'));
-// });
 
 gulp.task('compile-desa', () => {
 	const tsResult = tsProject.src().pipe(tsProject());
