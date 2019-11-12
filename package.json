@@ -34,10 +34,10 @@
     "gulp-terser": "^1.2.0",
     "gulp-typescript": "^5.0.1",
     "jasmine": "^3.5.0",
-    "method-override": "^2.3.9",
     "typescript": "^3.3.3333"
   },
   "dependencies": {
+    "method-override": "^2.3.9",
     "body-parser": "^1.17.1",
     "cors": "^2.8.5",
     "express": "^4.16.3",

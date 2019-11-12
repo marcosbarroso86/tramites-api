@@ -5,7 +5,7 @@ let cors = require('cors');
 
 //For SWAGGER
 const swaggerDocument = require('./swagger.json');
-import { swaggerUi } from 'swagger-ui-express';
+const swaggerUi = require('swagger-ui-express');
 
 import {Router} from "./route/Router";
 import Interceptor from "./interceptor/Interceptor";
@@ -40,7 +40,7 @@ export class App {
         this.express.use('/api', this.router.getRoutes());
 
         //Configurar documento swagger antes de descomentar
-        //this.express.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+        this.express.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     }
 
     public getExpress:Function = () => {
