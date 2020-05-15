@@ -41,14 +41,13 @@ gulp.task('start', () => {
 		ext: 'js',
 		env: {
 			'NODE_ENV': 'development',
-			'type': "oracle",
-			'host': "localhost",
-			'port': '1521',
-			'username': "SYSTEM",
-			'password': "Welcome_1",
-			'sid': 'ORCL18',
-			'database': "COMPANY",
-			"JWT_SECRET" : 'my_secret_key'
+			'type': 'mssql',
+			'host': '172.17.0.2',
+			'port': 1433,
+			'username': 'sa',
+			'password': 'Testing!',
+			'database' : 'master',
+			'schema' : 'dbo',
 		}
 
 	});
