@@ -1,6 +1,9 @@
 import "reflect-metadata";
 import {Connection, createConnection} from "typeorm";
-import { Employee } from "../model/Employee";
+//import { Employee } from "../model/Employee";
+import { Tramite } from "../model/Tramite";
+import {ValidacionComercial} from "../model/ValidacionComercial";
+
 
 export class Repository {
 
@@ -18,10 +21,11 @@ export class Repository {
                     port: parseInt(process.env.port),
                     username: process.env.username,
                     password: process.env.password,
-                    sid: process.env.sid,
                     database : process.env.database,
+                    schema : process.env.schema,
                     entities : [
-                        Employee
+                        Tramite,
+                        ValidacionComercial,
                     ],
                     synchronize : false,
                     logging : true
@@ -36,6 +40,7 @@ export class Repository {
     public static getConnection = async () => {
         const connection = await Repository.getInstace();
         return connection;
+
     }
 }
 
