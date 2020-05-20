@@ -1,5 +1,6 @@
-import {Entity, PrimaryGeneratedColumn, Column , OneToOne, OneToMany} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column , OneToOne, JoinColumn} from "typeorm";
 import {Tramite} from './Tramite'
+import {Estado} from './Estado'
 
 @Entity({name:'VALIDACION_COMERCIAL'})
 export class ValidacionComercial {
@@ -22,14 +23,13 @@ export class ValidacionComercial {
     @Column({name : 'REINGRESO_CONSUMOS'})
     public reingreso_consumos: boolean;   
 
-    @Column({name : 'ID_ESTADO'})
-    public estado: number;      
+    @OneToOne(type => Tramite)
+    @JoinColumn({name : 'ID_TRAMITE'})
+    tramite: Tramite;
 
-    // @OneToMany((type) => Estado, estado => estado.id)
-    // estado : Estado;
+    @OneToOne(type => Estado)
+    @JoinColumn({name : 'ID_ESTADO'})
+    estado : Estado;    
 
-    // @OneToOne((type) => Tramite, tramite => tramite.id)
-    // tramite : Tramite;
+
 }
-
-

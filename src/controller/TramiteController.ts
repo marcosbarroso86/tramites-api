@@ -22,17 +22,6 @@ export class TramiteController {
         });
     }
 
-    public createTramite = (req: Request , res: Response ) => {
-        let tramite:Tramite = req.body;
-        this.tramiteService.creatTramite(tramite)
-        .then((response:any) => {
-            HTTPResponseHandler.sendCreate(res);
-        })
-        .catch((err) => {
-            HTTPResponseHandler.sendInternalError(res , err , null);
-        });
-    }
-
     public getTramiteById = (req: Request , res: Response ) => {
         let tramiteId:number =  parseInt(req.params.id);
         this.tramiteService.getTramiteById(tramiteId)
@@ -45,17 +34,17 @@ export class TramiteController {
         });
     }
 
-    public deleteTramite = (req: Request , res: Response) => {
-        let tramiteID:number = parseInt(req.params.id);
-        this.tramiteService.deleteTramite(tramiteID)
+    public createTramite = (req: Request , res: Response ) => {
+        let tramite:Tramite = req.body;
+        this.tramiteService.createTramite(tramite)
         .then((response:any) => {
-            HTTPResponseHandler.sendEmpty(res);
+            HTTPResponseHandler.sendCreate(res);
         })
         .catch((err) => {
-            console.log(err);
-            HTTPResponseHandler.sendInternalError(res , err , null)
+            HTTPResponseHandler.sendInternalError(res , err , null);
         });
     }
+
 
     public updateTramite = (req: Request , res : Response) => {
         let tramiteID:number = parseInt(req.params.id);
