@@ -1,4 +1,5 @@
-import {Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
+import { ValidacionComercial } from "./ValidacionComercial";
 
 @Entity({name:'TRAMITE'})
 export class Tramite {
@@ -32,6 +33,5 @@ export class Tramite {
 
     @Column({name : 'ID_EJECUTIVO_VENTA'})
     public id_ejecutivo_venta: number;   
-
 
 }

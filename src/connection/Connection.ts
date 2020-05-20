@@ -1,8 +1,9 @@
 import "reflect-metadata";
 import {Connection, createConnection} from "typeorm";
-//import { Employee } from "../model/Employee";
 import { Tramite } from "../model/Tramite";
 import {ValidacionComercial} from "../model/ValidacionComercial";
+import {ValidacionABM} from "../model/ValidacionAbm";
+import { Estado } from "../model/Estado";
 
 
 export class Repository {
@@ -26,6 +27,8 @@ export class Repository {
                     entities : [
                         Tramite,
                         ValidacionComercial,
+                        ValidacionABM,
+                        Estado
                     ],
                     synchronize : false,
                     logging : true

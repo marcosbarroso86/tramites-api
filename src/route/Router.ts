@@ -20,9 +20,10 @@ export class Router {
 
         this.routes.route('/tramites/:id')
         .get(this.tramiteController.getTramiteById)
-        .delete(this.tramiteController.deleteTramite)
         .put(this.tramiteController.updateTramite)
+
     }
+
 
     public getRoutes(){
         return this.routes;
