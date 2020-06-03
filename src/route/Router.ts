@@ -12,15 +12,14 @@ export class Router {
     public init(express: any) {
         this.routes = express.Router();
 
-        this.routes.route('/tramites')
-        .get(this.tramiteController.getTramites);
-
-        this.routes.route('/tramites')
-        .post(this.tramiteController.createTramite);
+        this.routes.route('/tramites/')
+        .post(this.tramiteController.createTramite)
+        .get(this.tramiteController.getTramites)
 
         this.routes.route('/tramites/:id')
         .get(this.tramiteController.getTramiteById)
         .put(this.tramiteController.updateTramite)
+      
 
     }
 

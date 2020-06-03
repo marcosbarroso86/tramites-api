@@ -1,6 +1,6 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
-import { ValidacionComercial } from "./ValidacionComercial";
-
+import {Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne, OneToMany } from "typeorm";
+import {Ejecutivo} from './Ejecutivo';
+import {Formulario} from './Formulario'
 @Entity({name:'TRAMITE'})
 export class Tramite {
 
@@ -14,7 +14,7 @@ export class Tramite {
     public cuit: string;
     
     @Column({name:"FECHA_INICIO"})
-    public fecha_inicio: string;//CAMBIAR EL TIPO DE DATO
+    fechaInicio: Date;
 
     @Column({name : 'EMAIL'})
     public email: string;       
@@ -26,12 +26,16 @@ export class Tramite {
     public red: string;   
 
     @Column({name : 'ZONA_FILIAL'})
-    public zona_filial: string;   
+    public zonaFilial: string;   
 
     @Column({name : 'OBSERVACION'})
     public observacion: string;   
 
-    @Column({name : 'ID_EJECUTIVO_VENTA'})
-    public id_ejecutivo_venta: number;   
+    @ManyToOne(type => Ejecutivo, ejecutivo => ejecutivo.tramite)
+    @JoinColumn({name: "ID_EJECUTIVO_VENTA"}) 
+    ejecutivo : Ejecutivo;
+
+    @OneToMany(type => Formulario, formulario => formulario.tramite)
+    formulario: Formulario[];
 
 }

@@ -3,6 +3,7 @@ import { TramiteService } from "../service/TramiteService";
 import { Tramite } from "../model/Tramite";
 import HTTPResponseHandler from "../handlers/HTTPResponseHandler";
 
+
 export class TramiteController {
 
     private tramiteService: TramiteService;
@@ -11,21 +12,26 @@ export class TramiteController {
         this.tramiteService = new TramiteService();
     }
 
-    public getTramites = (req: Request , res: Response ) => {
-        this.tramiteService.getTramite()
-        .then((tramite:Tramite[]) => {
-            HTTPResponseHandler.sendSuccess(res , tramite);
-        })
-        .catch((err) => {
-            console.log(err);
-            HTTPResponseHandler.sendInternalError(res , err , null);
-        });
-    }
-
     public getTramiteById = (req: Request , res: Response ) => {
         let tramiteId:number =  parseInt(req.params.id);
         this.tramiteService.getTramiteById(tramiteId)
         .then((tramite:Tramite) => {
+            HTTPResponseHandler.sendSuccess(res , tramite);
+        })
+        .catch((err) => {
+            console.log(err);
+            HTTPResponseHandler.sendInternalError(res , err , null)
+        });
+    }
+
+
+    public getTramites = (req: Request , res: Response ) => {
+        //var query = require('url').parse(req.url,true).query;
+        
+        let filtros =  req.query;
+        console.log(filtros, 'filtro req.query')
+        this.tramiteService.getTramites(filtros)
+        .then((tramite : any) => {
             HTTPResponseHandler.sendSuccess(res , tramite);
         })
         .catch((err) => {
