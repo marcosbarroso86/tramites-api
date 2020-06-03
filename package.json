@@ -33,22 +33,34 @@
     "gulp-terser": "^1.2.0",
     "gulp-typescript": "^5.0.1",
     "jasmine": "^3.5.0",
-    "typescript": "^3.3.3333"
-  },
-  "dependencies": {
-    "@types/node": "^14.0.1",
+    "typescript": "^3.3.3333",
     "body-parser": "^1.17.1",
+    "chai": "^4.2.0",
     "cors": "^2.8.5",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.5.1",
     "method-override": "^2.3.9",
+    "mocha": "^7.2.0",
+    "mssql": "^6.2.0"
+  },
+  "dependencies": {
+    "@types/node": "^14.0.1",
+    "body-parser": "^1.17.1",
+    "chai": "^4.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.5.1",
+    "method-override": "^2.3.9",
+    "mocha": "^7.2.0",
     "mssql": "^6.2.0",
+    "request": "^2.88.2",
     "swagger-ui-express": "^4.1.2",
+    "ts-mocha": "^7.0.0",
     "typeorm": "^0.2.0"
   },
   "scripts": {
     "start": "node dist/server.js",
     "build": "node node_modules/gulp/bin/gulp.js prod",
-    "test": "node node_modules/jasmine/bin/jasmine.js"
+    "test": "node node_modules/ts-mocha/bin/ts-mocha --timeout 10000 ./spec/app.spec.js"
   }
 }

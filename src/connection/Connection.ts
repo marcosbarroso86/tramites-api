@@ -4,6 +4,8 @@ import { Tramite } from "../model/Tramite";
 import {ValidacionComercial} from "../model/ValidacionComercial";
 import {ValidacionABM} from "../model/ValidacionAbm";
 import { Estado } from "../model/Estado";
+import { Ejecutivo } from "../model/Ejecutivo";
+import { Formulario } from "../model/Formulario";
 
 
 export class Repository {
@@ -28,7 +30,9 @@ export class Repository {
                         Tramite,
                         ValidacionComercial,
                         ValidacionABM,
-                        Estado
+                        Estado,
+                        Ejecutivo,
+                        Formulario
                     ],
                     synchronize : false,
                     logging : true
@@ -47,3 +51,8 @@ export class Repository {
     }
 }
 
+
+module.exports = {
+    Repository,
+    
+}

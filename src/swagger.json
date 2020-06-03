@@ -1,15 +1,87 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Auditoria de terreno API REST",
+        "title": "ASE Ventas - Tramites",
         "version": "1.0.0",
-        "description": "API Restful de Aplicativo Auditoria de terreno"        
+        "description": "API Restful de Aplicativo Ase Ventas"        
     },
-    "basePath": "",
-    "tags": [],
+    "basePath": "/api",
+    "tags": [
+        {
+            "name": "ASE VENTAS",
+            "description": "Todo acerca de ASE"
+        }
+    ],
     "schemes": [
         "http"
     ],
-    "paths": {},
-    "definitions": {}
+    "paths": {
+        "/tramites": {
+            "get": {
+                "tags": [
+                    "Tramites"
+                ],
+                "summary": "Obtiene todos los tramites",
+                "operationId": "obtenerTramites",
+                "produces": [
+                    "application/json"
+                ],
+                "description": "Retorna todos los tramites.",
+                "responses": {
+                    "200": {
+                        "description": "Reportes de tramites",
+                        "schema": {
+                            "$ref": "#/definitions/tramites"
+                        }
+                        
+                    },
+                    "405": {
+                        "description": "Error de validación"
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                }
+            }
+        }
+    },
+
+    "definitions": {
+
+        "tramites": {            
+            "type": "object",
+            "properties": {
+                "cuil": {
+                    "type": "string"
+                },
+                "cuit": {
+                    "type": "string"
+                },
+                "fechaInicio": {
+                    "type": "Date"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "pass": {
+                    "type": "string"
+                },
+                "red": {
+                    "type": "string"
+                },
+                "zonaFilial": {
+                    "type": "string"
+                }, 
+                "observacion": {
+                    "type": "string"
+                }, 
+                "ejecutivo": {
+                    "type": "string"
+                } 
+
+            }
+        }
+          
+    }
+
 }

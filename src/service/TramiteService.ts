@@ -1,6 +1,7 @@
 import {Repository} from "../connection/Connection";
 import {getConnection} from "typeorm";
 import { Tramite } from "../model/Tramite";
+import QueryUtils from '../utils/QueryUtils';
 import { ValidacionComercial } from "../model/ValidacionComercial";
 import { ValidacionABM } from "../model/ValidacionAbm";
 
@@ -10,16 +11,23 @@ export class TramiteService {
 
     constructor() {}
 
-    public getTramite = async () => {
-        const repository = await this.getRepository();
-        const res = await repository.find();
-        return res;
-    }
-
     public getTramiteById = async (id:number) => {
         const tramiteRepository = await this.getRepository();
         const res = await tramiteRepository.findOne(id);
         return res;
+    }
+    
+
+    public getTramites = async (filtros:any) => {
+        let tramites:any = {}
+        const tramiteRepository = await this.getRepository();
+        let query = tramiteRepository.createQueryBuilder()
+            .select('Tramite')
+            .leftJoinAndSelect('Tramite.ejecutivo', 'ejecutivo')
+        query = QueryUtils.construirCondicionesTamite(query , filtros)
+        tramites = query.getMany(); 
+
+        return tramites;
     }
 
 
@@ -30,20 +38,17 @@ export class TramiteService {
             await getConnection(conexion.name).transaction(async transactionalEntityManager => {
 
                 const saveTramite: any = await transactionalEntityManager.getRepository(Tramite).save(tramite);
-                console.log(saveTramite.tramite, 'linea 33')
 
                 const validacionComercial:any = {
                     tramite : saveTramite.id,
                     estado: 1
                 }
-
                 const SaveValidacionComercial = await transactionalEntityManager.getRepository(ValidacionComercial).save(validacionComercial);
 
                  const validacionAbm:any = {
                     tramite : saveTramite.id,
                     estado: 1
                 }
-
                 const SavevalidacionAbm = await transactionalEntityManager.getRepository(ValidacionABM).save(validacionAbm);
 
                 }
