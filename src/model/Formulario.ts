@@ -22,7 +22,7 @@ export class Formulario {
     @Column({name:"UBICACION"})
     public ubicacion: string;
 
-    @ManyToOne(type => Tramite, tramite => tramite.formulario)
+    @ManyToOne(type => Tramite, tramite => tramite.form)
     @JoinColumn({name: "ID_TRAMITE"}) 
     tramite : Tramite;
 }

@@ -9,19 +9,26 @@ export class ValidacionComercial {
     public id: number;
 
     @Column({name:"CUIL"})
-    public cuil: boolean;
+    public cuil: number;
 
     @Column({name:"CUIT"})
-    public cuit: boolean;
+    public cuit: number;
     
+    @Column({name:"ANSES"})
+    public anses: number;//CAMBIAR EL TIPO DE DATO
+
     @Column({name:"SUPERINTENDENCIA"})
-    public superintendencia: boolean;//CAMBIAR EL TIPO DE DATO
+    public superintendence: number;//CAMBIAR EL TIPO DE DATO
 
     @Column({name : 'FORMULARIO_COMPLETO'})
-    public formulario_completo: boolean;       
+    public completeForm: number;       
 
     @Column({name : 'REINGRESO_CONSUMOS'})
-    public reingreso_consumos: boolean;   
+    public consumptionReentry: number;   
+
+    @Column({name : 'ACTIVO'})
+    public active: number;   
+
 
     @OneToOne(type => Tramite)
     @JoinColumn({name : 'ID_TRAMITE'})

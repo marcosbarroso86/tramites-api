@@ -28,7 +28,13 @@ export class Ejecutivo {
     @Column({name:"ZONA_FILIAL"})
     public zonaFilial: string;
 
-    @OneToMany(type => Tramite, tramite => tramite.ejecutivo)
+    @Column({name: "SEXO"})
+    public sexo: string;
+
+    @Column({name: 'ACTIVO'})
+    public activo: number;
+
+    @OneToMany(type => Tramite, tramite => tramite.executive)
     tramite: Tramite[];
 
 

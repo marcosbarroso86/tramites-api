@@ -14,28 +14,22 @@ export class Tramite {
     public cuit: string;
     
     @Column({name:"FECHA_INICIO"})
-    fechaInicio: Date;
+    creationDate: Date;
 
-    @Column({name : 'EMAIL'})
-    public email: string;       
+    @Column({name:"SEXO"})
+    public gender: string;
 
-    @Column({name : 'PASS'})
-    public pass: string;   
+    @Column({name:"ANALISTA_COMERCIAL_COD"})
+    public analistaComercialCod: string;
 
-    @Column({name : 'RED'})
-    public red: string;   
-
-    @Column({name : 'ZONA_FILIAL'})
-    public zonaFilial: string;   
-
-    @Column({name : 'OBSERVACION'})
-    public observacion: string;   
+    @Column({name:"ANALISTA_ABM_COD"})
+    public analistaAbmCod: string;
 
     @ManyToOne(type => Ejecutivo, ejecutivo => ejecutivo.tramite)
     @JoinColumn({name: "ID_EJECUTIVO_VENTA"}) 
-    ejecutivo : Ejecutivo;
+    executive : Ejecutivo;
 
     @OneToMany(type => Formulario, formulario => formulario.tramite)
-    formulario: Formulario[];
+    form: Formulario[];
 
 }

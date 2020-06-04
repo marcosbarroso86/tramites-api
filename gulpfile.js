@@ -36,13 +36,13 @@ gulp.task('clean:temporal', () => {
 
 gulp.task('start', () => {
 	let stream = nodemon({
-		exec: 'node --inspect',
+		exec: 'node --inspect=7000',
 		script: config.server.src,
 		ext: 'js',
 		env: {
 			'NODE_ENV': 'development',
 			'type': 'mssql',
-			'host': '172.17.0.2',
+			'host': 'localhost',
 			'port': 1433,
 			'username': 'sa',
 			'password': 'Testing!',

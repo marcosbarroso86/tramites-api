@@ -16,7 +16,6 @@ export class TramiteService {
         const res = await tramiteRepository.findOne(id);
         return res;
     }
-    
 
     public getTramites = async (filtros:any) => {
         let tramites:any = {}
@@ -33,37 +32,22 @@ export class TramiteService {
 
     public createTramite = async (tramite:Tramite) => {
         let response:any;
-        try {
-            const conexion = await Repository.getConnection();
-            await getConnection(conexion.name).transaction(async transactionalEntityManager => {
+        const conexion = await Repository.getConnection();
+        await getConnection(conexion.name).transaction(async transactionalEntityManager => {
 
-                const saveTramite: any = await transactionalEntityManager.getRepository(Tramite).save(tramite);
-
-                const validacionComercial:any = {
-                    tramite : saveTramite.id,
-                    estado: 1
-                }
-                const SaveValidacionComercial = await transactionalEntityManager.getRepository(ValidacionComercial).save(validacionComercial);
-
-                 const validacionAbm:any = {
-                    tramite : saveTramite.id,
-                    estado: 1
-                }
-                const SavevalidacionAbm = await transactionalEntityManager.getRepository(ValidacionABM).save(validacionAbm);
-
-                }
-            )
-        } catch (error) {
-            console.log(error);
-            throw new HttpRequestError(HttpRequestError.ERROR_TYPE + " " + error);
-        }
+            const saveTramite: any = await transactionalEntityManager.getRepository(Tramite).save(tramite);
+            const validacionComercial:any = { 
+                tramite : saveTramite.id, estado: 1, cuil: 0, cuit: 0,anses: 0, superintendence:0, 
+                completeForm: 0, consumptionReentry:0, active:0
+            }
+            await transactionalEntityManager.getRepository(ValidacionComercial).save(validacionComercial);
+        })
         return response;
     }
 
     public updateTramite = async (tramiteID:number , tramite:Tramite) => {
         const tramiteRepository = await this.getRepository();
         
-    console.log(tramiteID)        
         let response:any;
         try {
 
