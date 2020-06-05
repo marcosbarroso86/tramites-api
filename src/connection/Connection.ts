@@ -18,7 +18,7 @@ export class Repository {
                 return Repository.connection;
             } else {
 
-                let options:any = {
+                var options:any = {
                     type: process.env.type,
                     host: process.env.host,
                     port: parseInt(process.env.port),
@@ -55,4 +55,4 @@ export class Repository {
 module.exports = {
     Repository,
     
-}
+} 

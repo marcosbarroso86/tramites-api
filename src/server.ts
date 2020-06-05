@@ -1,5 +1,4 @@
-import {App} from "./App";
-
+const App = require ("./App");
 const http = require('http');
 const express = new App().getExpress();
 const port = 8081;
