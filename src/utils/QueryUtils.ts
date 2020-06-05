@@ -17,7 +17,6 @@ static obtenerFiltros = (req:Request):any => {
 public static construirCondicionesTamite = (query:SelectQueryBuilder<any> ,  queryParam:any ) => {
     
     if ('ejecutivo' in queryParam) {
-            //let filtro = queryParam.ejecutivo 
             query = query.andWhere("Tramite.ejecutivo = :ejecutivo", {ejecutivo: queryParam.ejecutivo })
         }
 

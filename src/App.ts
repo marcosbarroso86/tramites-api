@@ -11,7 +11,7 @@ import {Router} from "./route/Router";
 import Interceptor from "./interceptor/Interceptor";
 
 // Create and configure ExpressJS.
-export class App {
+class App {
 
     private express:any;
     private router:Router;
@@ -47,4 +47,4 @@ export class App {
         return this.express;
     }
 }
-
+module.exports = App;
